@@ -109,7 +109,7 @@ foreach (string name in names)
 
 /*  Задача 5 */
 
-
+Console.WriteLine("Hello, my name is Vitalii!");
 
 Person per1 = new Person("Vitalii", 19);
 Person per2 = new Person("Alex", 25);
@@ -134,3 +134,4 @@ class Person
     }
 
 }
+
