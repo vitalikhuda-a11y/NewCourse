@@ -1,126 +1,129 @@
 ﻿/* Задача 1 */
 
+{
+    int age = 18;
+    string userName = "Vitalii";
+    bool isRight = true;
+    double percent = 90.9;
 
-/* int age = 18;
-string name = "Vitalii";
-bool isRight = true;
-double percent = 90.9;
+    Console.WriteLine(age);
+    Console.WriteLine(userName);
+    Console.WriteLine(isRight);
+    Console.WriteLine(percent);
 
+    Console.WriteLine("Якщо присвоїти null до int, буде помилка, тому що int має містити числове значення, а null означає відсутність значення.");
+}
 
-Console.WriteLine(age);
-Console.WriteLine(name);
-Console.WriteLine(isRight);
-Console.WriteLine(percent);
-
-/* спробував присвоїти null до int, але написало, що Cannot convert null to 'int', тому що змінна int має мати якесь значення, а null означає, що значення немає */
 
 /* Задача 2 */
 
-/* Console.WriteLine("Введіть свій вік:");
-int aget = int.Parse(Console.ReadLine());
-Console.WriteLine("мені " + aget);
-
-
-Console.WriteLine("Введіть число");
-int num = int.Parse(Console.ReadLine());
-if (num % 2 == 0)
-
 {
+    Console.WriteLine("Введіть свій вік:");
+    int userAge = int.Parse(Console.ReadLine()!);
+    Console.WriteLine("Мені " + userAge);
 
-    Console.WriteLine("Парне");
+    Console.WriteLine("Введіть число:");
+    int number = int.Parse(Console.ReadLine()!);
 
+    if (number % 2 == 0)
+    {
+        Console.WriteLine("Парне");
+    }
+    else
+    {
+        Console.WriteLine("Непарне");
+    }
+
+    Console.WriteLine("Введіть нове число:");
+    int limitNumber = int.Parse(Console.ReadLine()!);
+
+    Console.WriteLine("Цикл через for:");
+
+    for (int i = 1; i <= limitNumber; i++)
+    {
+        Console.WriteLine(i);
+    }
+
+    Console.WriteLine("Цикл через while:");
+
+    int j = 1;
+
+    while (j <= limitNumber)
+    {
+        Console.WriteLine(j);
+        j++;
+    }
 }
-else
-{
-    Console.WriteLine("Непарне");
-}
- */
-
-/* Console.WriteLine("Введіть нова число");
-int newnum = int.Parse(Console.ReadLine());
-Console.WriteLine("Цикл через for:");
-
-for (int i = 1; i <= newnum; i++)
-{
-    Console.WriteLine(i);
-}
-
-
-Console.WriteLine("Цикл через while:");
-
-int j = 1;
-
-while (j <= newnum)
-{
-    Console.WriteLine(j);
-    j++;
-} */
 
 
 /* Задача 3 */
 
-/* 
-int rez = Add(5, 3);
-Console.WriteLine(rez);
-
-string greeting = Greet("Vitalii");
-Console.WriteLine(greeting);
-
-
-static int Add(int a, int b)
 {
-    return a + b;
+    int sumResult = Add(5, 3);
+    Console.WriteLine(sumResult);
+
+    string greetingMessage = Greet("Vitalii");
+    Console.WriteLine(greetingMessage);
+}
+
+
+/* Задача 4 */
+
+{
+    int[] numbers = { 4, 30, -5, 0, 6 };
+
+    int maxNumber = numbers[0];
+
+    for (int i = 1; i < numbers.Length; i++)
+    {
+        if (numbers[i] > maxNumber)
+        {
+            maxNumber = numbers[i];
+        }
+    }
+
+    Console.WriteLine("Максимальне число = " + maxNumber);
+
+    List<string> names = new List<string>();
+
+    names.Add("Vitalii");
+    names.Add("Alex");
+    names.Add("Bob");
+
+    foreach (string name in names)
+    {
+        Console.WriteLine(name);
+    }
+}
+
+
+/* Задача 5 */
+
+{
+    Console.WriteLine("Hello, my name is Vitalii!");
+
+    Person firstPerson = new Person("Vitalii", 19);
+    Person secondPerson = new Person("Alex", 25);
+
+    firstPerson.Introduce();
+    secondPerson.Introduce();
+}
+
+
+static int Add(int firstNumber, int secondNumber)
+{
+    return firstNumber + secondNumber;
 }
 
 static string Greet(string name)
 {
     return "Привіт " + name;
 }
- */
-
-
-
-/*  Задача 4 */
-
-/* int[] nums = { 4, 30, -5, 0, 6 };
-
-int max = nums[0];
-
-for (int i = 1; i < nums.Length; i++)
-{
-    if (nums[i] > max)
-    {
-        max = nums[i];
-    }
-}
-Console.WriteLine("Максимальне число = " + max);
-
-List<string> names = new List<string>();
-
-names.Add("Vitalii");
-names.Add("Alex");
-names.Add("Bob");
-
-foreach (string name in names)
-{
-    Console.WriteLine(name);
-} */
-
-
-/*  Задача 5 */
-
-Console.WriteLine("Hello, my name is Vitalii!");
-
-Person per1 = new Person("Vitalii", 19);
-Person per2 = new Person("Alex", 25);
-
-per1.Introduce();
-per2.Introduce();
 
 class Person
 {
-    public string Name;
-    public int Age;
+    public string Name { get; set; }
+    public int Age { get; set; }
 
     public Person(string name, int age)
     {
@@ -132,6 +135,4 @@ class Person
     {
         Console.WriteLine($"Привіт, я {Name}, мені {Age} років");
     }
-
 }
-
