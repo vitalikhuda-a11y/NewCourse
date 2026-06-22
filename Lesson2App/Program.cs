@@ -1,6 +1,7 @@
 ﻿//Блок 2 (1)
 
 using System.Runtime.CompilerServices;
+using Microsoft.VisualBasic;
 
 string text = "apple banana apple cherry banana apple";
 
@@ -119,6 +120,11 @@ Console.WriteLine(wordStack.Pop());
 
 Console.WriteLine(wordStack.IsEmpty);
 
+
+//запуск до завдання 7
+LinqTasks.Run();
+
+
 class MyStack<T>
 {
     private List<T> items = new List<T>();
@@ -157,3 +163,83 @@ class MyStack<T>
     }
 
 }
+
+
+//Блок 4 (1)
+
+
+
+
+
+class LinqTasks
+{
+
+    public static void Run()
+    {
+        var students = new List<Student>
+{
+ new("Олег", 85),
+ new("Юля", 92),
+ new("Влад", 78),
+ new("Аня", 92),
+ new("Петро", 65),
+};
+
+
+
+        var studentAboveEighty = students.Where(student => student.Grade > 80);
+
+        Console.WriteLine("Студенти з оцінкою вище 80: ");
+
+        foreach (var student in studentAboveEighty)
+        {
+            Console.WriteLine($"{student.Name} - {student.Grade}");
+        }
+        ;
+
+
+        var nameSortedByGrade = students
+        .OrderByDescending(student => student.Grade)
+        .Select(student => student.Name);
+
+        Console.WriteLine("Імена відсортовані за оцінками: ");
+
+        foreach (var name in nameSortedByGrade)
+        {
+            Console.WriteLine(name);
+        }
+
+        var AverageMark = students.Average(student => student.Grade);
+
+        Console.WriteLine($"Середня оцінка: {AverageMark}");
+
+
+        var BestStudent = students
+        .OrderByDescending(student => student.Grade)
+        .First();
+
+        Console.WriteLine($"Студент з найвищою оцінкою: {BestStudent.Name} - {BestStudent.Grade}");
+
+
+        var groupedByGrade = students.GroupBy(student => student.Grade);
+
+        Console.WriteLine("Групування по оцінці:");
+
+        foreach (var group in groupedByGrade)
+        {
+            var names = group.Select(student => student.Name);
+
+            Console.WriteLine($"{group.Key}: [{string.Join(", ", names)}]");
+        }
+
+
+    }
+
+}
+record Student(string Name, int Grade);
+
+//Блок 4 (2)
+
+//виведеться 3,4,5,6,7 , бо оцей рядок: var query = numbers.Where(x => x > 2); не створює новий список, він тільки створює правило
+//після того, як додали 6 і 7, тоді виконується запит foreach (var n in query).
+//Якщо додати .ToList(), то виведеться 3,4,5, бо одразу виконує LINQ-запит і створює готовий список.
