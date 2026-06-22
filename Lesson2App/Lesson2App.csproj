@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-
-<ItemGroup>
-  <Compile Remove="Lesson2App\**\*.cs" />
-</ItemGroup>
-
 </Project>
