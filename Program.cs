@@ -67,6 +67,19 @@
 }
 
 
+
+
+static int Add(int firstNumber, int secondNumber)
+{
+    return firstNumber + secondNumber;
+}
+
+static string Greet(string name)
+{
+    return "Привіт " + name;
+}
+
+
 /* Задача 4 */
 
 {
@@ -99,31 +112,41 @@
 
 /* Задача 5 */
 
-{
-    Console.WriteLine("Hello, my name is Vitalii!");
-
-    Person firstPerson = new Person("Vitalii", 19);
-    Person secondPerson = new Person("Alex", 25);
-
-    firstPerson.Introduce();
-    secondPerson.Introduce();
-}
 
 
-static int Add(int firstNumber, int secondNumber)
-{
-    return firstNumber + secondNumber;
-}
 
-static string Greet(string name)
-{
-    return "Привіт " + name;
-}
+
+Person firstPerson = new Person("Vitalii", 19);
+Person secondPerson = new Person("Alex", 25);
+
+firstPerson.Introduce();
+secondPerson.Introduce();
+
+/* Клас для задачі 5 */
 
 class Person
 {
-    public string Name { get; set; }
-    public int Age { get; set; }
+
+    private int ageValue;
+    public string Name { get; private set; }
+    public int Age
+    {
+        get
+        {
+            return ageValue;
+        }
+        set
+        {
+            if (value >= 0)
+            {
+                ageValue = value;
+            }
+            else
+            {
+                Console.WriteLine("Вік не може бути від'ємним");
+            }
+        }
+    }
 
     public Person(string name, int age)
     {
