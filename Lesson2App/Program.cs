@@ -71,3 +71,89 @@ foreach (string student in allUniqueStudents)
     Console.WriteLine(student);
 
 }
+
+//Блок 3 (1)
+
+static void Swap<T>(ref T firstValue, ref T secondValue)
+{
+    T temp = firstValue;
+    firstValue = secondValue;
+    secondValue = temp;
+}
+
+int a = 5, b = 10;
+Swap(ref a, ref b);
+Console.WriteLine($"a = {a}, b = {b}");
+
+string x = "hello", y = "world";
+Swap(ref x, ref y);
+Console.WriteLine($"x = {x}, y = {y}");
+
+//Блок 3 (2)
+
+
+MyStack<int> numbers = new MyStack<int>();
+
+numbers.Push(10);
+numbers.Push(20);
+numbers.Push(30);
+
+Console.WriteLine(numbers.Peek());
+
+Console.WriteLine(numbers.Pop());
+Console.WriteLine(numbers.Pop());
+
+Console.WriteLine(numbers.IsEmpty);
+
+
+
+MyStack<string> wordStack = new MyStack<string>();
+
+wordStack.Push("hello");
+wordStack.Push("world");
+
+Console.WriteLine(wordStack.Peek());
+
+Console.WriteLine(wordStack.Pop());
+Console.WriteLine(wordStack.Pop());
+
+Console.WriteLine(wordStack.IsEmpty);
+
+class MyStack<T>
+{
+    private List<T> items = new List<T>();
+
+    public bool IsEmpty
+    {
+        get
+        {
+            return items.Count == 0;
+        }
+    }
+
+
+    public void Push(T item)
+    {
+        items.Add(item);
+    }
+
+
+    public T Pop()
+    {
+        int lastIndex = items.Count - 1;
+        T lastItem = items[lastIndex];
+
+        items.RemoveAt(lastIndex);
+
+        return lastItem;
+
+    }
+
+    public T Peek()
+    {
+        int lastIndex = items.Count - 1;
+
+        return items[lastIndex];
+    }
+
+}
