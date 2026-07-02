@@ -1,5 +1,7 @@
+using LINQ_Check.Delivery;
 using LINQ_Check.Discounts;
 using LINQ_Check.Mappers;
+using LINQ_Check.Models;
 using LINQ_Check.Services;
 using System.ComponentModel;
 
@@ -149,3 +151,65 @@ static void TestDiscounts(List<ProductDto> products)
         PriceCalculator.PrintReceipt(product, discount);
     }
 }
+
+//списки із замовленнями
+
+List<Order> orderList = new();
+orderList.Add(new Order
+{
+    Product = products[0],
+    Discount = new NoDiscount(),
+    Shipping = new StandardShipping(),
+}
+    );
+
+
+orderList.Add(new Order
+{
+    Product = products[1],
+    Discount = new FixedAmountDiscount(30),
+    Shipping = new ExpressShipping(),
+}
+    );
+
+orderList.Add(new Order
+{
+    Product = products[2],
+    Discount = new PercentageDiscount(10),
+    Shipping = new StandardShipping(),
+}
+    );
+
+orderList.Add(new Order
+{
+    Product = products[3],
+    Discount = new FixedAmountDiscount(10),
+    Shipping = new FreeShipping(),
+}
+    );
+
+var TheBiggestTotal = orderList
+    .MaxBy(order => order.GetTotal());
+
+Console.WriteLine("Biggest order:");
+Console.WriteLine(TheBiggestTotal.Product.Name);
+Console.WriteLine(TheBiggestTotal.GetTotal());
+
+
+//4б
+
+/*
+Якщо додати новий тип доставки PickupShipping, то клас Order міняти не треба,
+бо Order працює через інтерфейс IShippingMethod. Треба просто створити новий
+клас PickupShipping і описати там назву, ціну та кількість днів доставки.
+
+Якщо PickupShipping доступний тільки для певних міст, то перевірку міста
+краще зробити в окремому класі, наприклад у ShippingService.
+Тоді Order не буде містити зайву логіку про міста і доставку.
+
+PriceCalculator теж міняти не треба, бо він відповідає тільки за знижки,
+а не за доставку.
+
+Якби доставка була зроблена через enum і switch в Order, то при кожній новій
+доставці треба було б змінювати Order і додавати новий case у switch.
+*/
