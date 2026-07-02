@@ -1,4 +1,7 @@
+using LINQ_Check.Discounts;
 using LINQ_Check.Mappers;
+using LINQ_Check.Services;
+using System.ComponentModel;
 
 
 var rawProducts = TestData.RawProducts;
@@ -127,3 +130,22 @@ var NeverCancel = orders
 //1
 //2
 //8
+
+TestDiscounts(products);
+
+static void TestDiscounts(List<ProductDto> products)
+{
+
+    var product = products[2];
+    List<IDiscountStrategy> discountStrategies = new();
+
+    discountStrategies.Add(new NoDiscount());
+    discountStrategies.Add(new PercentageDiscount(15));
+    discountStrategies.Add(new FixedAmountDiscount(10));
+
+
+    foreach (var discount in discountStrategies)
+    {
+        PriceCalculator.PrintReceipt(product, discount);
+    }
+}
