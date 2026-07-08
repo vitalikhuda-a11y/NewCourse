@@ -7,7 +7,7 @@ namespace Hotel.Repositories
     public class BookingRepository
     {
 
-        public void Save (BookingRequest request, decimal price)
+        public void Save (BookingRequest request, Money price)
         {
             Console.WriteLine($"Saved booking for room {request.RoomId}, total: {price}");
         }

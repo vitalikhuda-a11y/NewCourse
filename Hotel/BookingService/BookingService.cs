@@ -29,7 +29,7 @@ namespace Hotel.Services
       
         public void CreateBooking(BookingRequest request)
         {
-            // ТУТ БУДЕ ТВІЙ КОД
+           
             _validator.Validate(request);
 
             Money price = _pricingStrategy.CalculatePrice(request);

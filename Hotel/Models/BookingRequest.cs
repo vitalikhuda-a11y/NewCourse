@@ -14,7 +14,7 @@ public record BookingRequest
     public BookingRequest(Guid roomId, DateOnly checkIn, DateOnly checkOut, int guestsCount)
 
     {
-        // тут твої if-перевірки
+       
 
         if (guestsCount <= 0) {
         throw new ArgumentException("Кількість гостей має бути більше нуля");
