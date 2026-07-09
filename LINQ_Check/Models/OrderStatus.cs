@@ -1,0 +1,1 @@
+public enum OrderStatus { Pending, Shipped, Cancelled }
